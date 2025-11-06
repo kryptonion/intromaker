@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intro Maker (5 Templates)</title>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --panel: #121723;
+      --accent: #7c5cff;
+      --accent-2: #2dd4bf;
+      --text: #e5e7eb;
+      --muted: #9aa1ad;
+      --ring: rgba(124,92,255,0.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(124,92,255,.15), transparent),
+                  radial-gradient(800px 400px at 100% 0%, rgba(45,212,191,.12), transparent),
+                  var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+    }
+    .app {
+      width: min(1100px, 100%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.0));
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+    header {
+      padding: 20px 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: linear-gradient(180deg, rgba(124,92,255,0.08), rgba(124,92,255,0.02));
+    }
+    header h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    header h1 span.logo {
+      display: inline-grid; place-items:center; width:28px; height:28px; border-radius:8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white; font-weight:800; font-size:16px;
+      box-shadow: 0 6px 14px rgba(124,92,255,0.35);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 0;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .panel {
+      padding: 22px;
+    }
+    .left { border-right: 1px solid rgba(255,255,255,0.06); }
+    .field {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    label { color: var(--muted); font-size: 13px; letter-spacing: 0.2px; }
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--panel);
+      color: var(--text);
+      outline: none;
+      font-size: 15px;
+      transition: box-shadow .2s, border-color .2s, transform .06s;
+    }
+    input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 520px) { .buttons { grid-template-columns: 1fr; } }
+    button.template {
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      transition: transform .05s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    button.template:hover { border-color: rgba(124,92,255,0.6); box-shadow: 0 8px 18px rgba(0,0,0,0.25); }
+    button.template:active { transform: translateY(1px) scale(0.998); }
+
+    .output-wrap {
+      display: grid; gap: 10px;
+    }
+    .output-actions {
+      display: flex; gap: 10px; align-items: center; justify-content: space-between;
+    }
+    .small {
+      font-size: 12px; color: var(--muted);
+    }
+    textarea {
+      width: 100%; min-height: 340px; resize: vertical; padding: 16px; border-radius: 14px;
+      background: var(--panel); color: var(--text); border: 1px solid rgba(255,255,255,0.08);
+      outline: none; font-size: 15px; line-height: 1.6;
+    }
+    .pill {
+      padding: 8px 10px; border-radius: 999px; font-size: 12px; color: var(--text);
+      background: linear-gradient(90deg, rgba(124,92,255,0.25), rgba(45,212,191,0.25));
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .copy {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 12px; cursor: pointer; font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1><span class="logo">IM</span> Intro Maker </h1>
+      <div class="pill">Type a title → click a channel → done</div>
+    </header>
+
+    <div class="grid">
+      <section class="panel left">
+        <div class="field">
+          <label for="title">Your Fanfic Title</label>
+          <input id="title" type="text" placeholder="e.g. What If Deku Became The Inquisitor of Thedas" />
+        </div>
+
+        <div class="field">
+          <label>Choose Channel / Voice (5 templates)</label>
+          <div class="buttons">
+            <button class="template" data-key="whatifGuy">The Whatif Guy</button>
+            <button class="template" data-key="sensei">Sensei</button>
+            <button class="template" data-key="fanficGuy">The Fanfiction Guy</button>
+            <button class="template" data-key="cabbageHead">CabbageHead Fanfics</button>
+            <button class="template" data-key="lettuceHead">LettuceHead Fanfics</button>
+          </div>
+        </div>
+
+        <p class="small">Note: The generator will insert your title exactly where the templates mention the story title. All wording is kept as provided.</p>
+      </section>
+
+      <section class="panel">
+        <div class="output-wrap">
+          <div class="output-actions">
+            <span class="pill" id="activeLabel">No template selected</span>
+            <button class="copy" id="copyBtn" aria-label="Copy intro">Copy</button>
+          </div>
+          <textarea id="result" placeholder="Your generated intro will appear here…"></textarea>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const titleInput = document.getElementById('title');
+    const result = document.getElementById('result');
+    const activeLabel = document.getElementById('activeLabel');
+    const copyBtn = document.getElementById('copyBtn');
+
+    const templates = {
+      whatifGuy: ({title}) => (`Hi, Welcome Back guys. This is your friend. The whatif guy. Back with another fanfiction. This is the first part of. ${title}. Now before starting, please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`),
+      sensei: ({title}) => (`Hi, Welcome Back guys. This is your sensei . Back with another fanfiction. This is the first part of. ${title}. Now before starting, please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`),
+      fanficGuy: ({title}) => (`Hi, Welcome Back guys. This is your friend. The fanfiction  guy. Back with another fanfiction. This is the first part of. ${title}. Now before starting, please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`),
+      cabbageHead: ({title}) => (`Hi, Welcome Back guys. This is your friend. cabbage head Fanfics. Back with Amazing fanfiction. This is the series of. ${title}. Now before starting, please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`),
+      lettuceHead: ({title}) => (`Hi, Welcome Back guys. This is your friend. lettuce head Fanfics. Back with Amazing fanfiction. This  is the series of. ${title}. please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`)
+    };
+
+    function formatTitle(title) {
+      return title
+        .toLowerCase()
+        .split(/\s+/)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    }
+
+    function makeIntro(key) {
+      let title = titleInput.value && titleInput.value.trim() ? titleInput.value.trim() : '[Your Title Here]';
+      title = formatTitle(title);
+      const fn = templates[key];
+      if (!fn) return;
+      const text = fn({ title });
+      result.value = text;
+      activeLabel.textContent = `Template: ${labelForKey(key)}`;
+    }
+
+    function labelForKey(key) {
+      switch(key){
+        case 'whatifGuy': return 'The whatif guy';
+        case 'sensei': return 'Sensei';
+        case 'fanficGuy': return 'The fanfiction guy';
+        case 'cabbageHead': return 'cabbage head Fanfics';
+        case 'lettuceHead': return 'lettuce head Fanfics';
+        default: return key;
+      }
+    }
+
+    document.querySelectorAll('button.template').forEach(btn => {
+      btn.addEventListener('click', () => makeIntro(btn.dataset.key));
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      if (!result.value) return;
+      try {
+        await navigator.clipboard.writeText(result.value);
+        copyBtn.textContent = 'Copied!';
+        setTimeout(()=> copyBtn.textContent = 'Copy', 1200);
+      } catch (e) {
+        result.select();
+        document.execCommand('copy');
+        copyBtn.textContent = 'Copied!';
+        setTimeout(()=> copyBtn.textContent = 'Copy', 1200);
+      }
+    });
+  </script>
+</body>
+</html>
