@@ -163,6 +163,8 @@
             <button class="template" data-key="fanficGuy">The Fanfiction Guy</button>
             <button class="template" data-key="cabbageHead">CabbageHead Fanfics</button>
             <button class="template" data-key="lettuceHead">LettuceHead Fanfics</button>
+              <button class="template" data-key="lettuceHead">Brocolli Fanfics</button>
+              <button class="template" data-key="lettuceHead">Iron Fiction</button>
           </div>
         </div>
 
@@ -192,7 +194,9 @@
       sensei: ({title}) => (`Hi, Welcome Back guys. This is your sensei . Back with another fanfiction. This is the first part of. ${title}. Now before starting, please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`),
       fanficGuy: ({title}) => (`Hi, Welcome Back guys. This is your friend. The fanfiction  guy. Back with another fanfiction. This is the first part of. ${title}. Now before starting, please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`),
       cabbageHead: ({title}) => (`Hi, Welcome Back guys. This is your friend. cabbage head Fanfics. Back with Amazing fanfiction. This is the series of. ${title}. Now before starting, please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`),
-      lettuceHead: ({title}) => (`Hi, Welcome Back guys. This is your friend. lettuce head Fanfics. Back with Amazing fanfiction. This  is the series of. ${title}. please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`)
+      lettuceHead: ({title}) => (`Hi, Welcome Back guys. This is your friend. lettuce head Fanfics. Back with Amazing fanfiction. This  is the series of. ${title}. please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`),
+      brocolli: ({title}) => (`Hi, Welcome Back guys. This is your friend. The Brocolli Fanfics. Back with Amazing fanfiction. This is the Series of. ${title}. please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`),
+      iron: ({title}) => (`HHi, Welcome Back guys. This is your friend. The Iron Fanfics. Back with Amazing fanfiction. This is the Series of. ${title}. Now before starting, please give this video a like and subscribe to the channel if you want more videos like this. Now let's get into the fanfic.`)
     };
 
     function formatTitle(title) {
@@ -220,6 +224,8 @@
         case 'fanficGuy': return 'The fanfiction guy';
         case 'cabbageHead': return 'cabbage head Fanfics';
         case 'lettuceHead': return 'lettuce head Fanfics';
+        case 'brocolli': return 'brocolli Fanfics';
+        case 'iron': return 'iron Fiction';
         default: return key;
       }
     }
